@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->integer('shoe_size')->nullable();
-            $table->rememberToken();
+            $table->integer('user_id')->unsigned();
+            $table->enum('status', ['Przyjęte', 'Realizowane', 'Zakonczone'])->default('Przyjęte');
             $table->timestamps();
         });
     }
@@ -29,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('orders');
         Schema::enableForeignKeyConstraints();
     }
 };

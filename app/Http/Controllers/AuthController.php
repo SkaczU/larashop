@@ -20,7 +20,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
- 
+        $user->shoe_size = $request->shoe_size;
         $user->save();
  
         return back()->with('success', 'Rejestracja przebiegła Pomyślne');
