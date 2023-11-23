@@ -21,6 +21,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->shoe_size = $request->shoe_size;
+        $user->voivodeship = $request->voivodeship;
         $user->save();
  
         return back()->with('success', 'Rejestracja przebiegła Pomyślne');
@@ -47,8 +48,9 @@ class AuthController extends Controller
  
     public function logout()
     {
+
         Auth::logout();
  
-        return redirect()->route('login');
+        return redirect('/');
     }
 }

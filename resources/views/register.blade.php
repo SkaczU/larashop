@@ -24,6 +24,10 @@
                             <input type="email" name="email" class="form-control" id="email" placeholder="przykladowy@mail.com" required>
                         </div>
                         <div class="mb-3 row align-items-center">
+                            <label for="voivodeship" class="col-md-4 col-form-label text-md-start"><b>Województwo</b></label>
+                            <input type="select" name="voivodeship" class="form-control" id="voivodeship"  required>
+                        </div>
+                        <div class="mb-3 row align-items-center">
                             <label for="password" class="col-md-4 col-form-label text-md-start"><b>Podaj Hasło</b></label>
                             <div class="input-group">
                                 <input type="password" name="password" class="form-control" id="password" required>
