@@ -3,7 +3,7 @@
 @section('content')
     <div class="row justify-content-center mt-4">
         <div class="col-lg-4">
-            <div class="card text-center">
+            <div class="card text-center mb-0">
                 <div class="card-header">
                     <h1 class="card-title">Rejestracja</h1>
                 </div>
@@ -57,21 +57,19 @@
                             <label for="password" class="col-md-4 col-form-label text-md-start"><b>Podaj Hasło</b></label>
                             <div class="input-group">
                                 <input type="password" name="password" class="form-control" id="password" required>
-                                <div class="input-group-text">
-                                    <input type="checkbox" id="showPassword">&nbsp;Pokaż Hasło
-                                </div>
+                                <button type="button" class="btn btn-link" id="togglePassword">Pokaż Hasło</button>
                             </div>
+                            <div id="password-strength-text" class="text-muted mt-2"></div>
                         </div>
+
                         <div class="progress mt-2">
-                              <div id="password-strength-bar" class="progress-bar password-strength-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div id="password-strength-bar" class="progress-bar password-strength-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="mb-3 row align-items-center">
                             <label for="password_confirmation" class="col-md-4 col-form-label text-md-start"><strong>Jeszcze raz</strong></label>
                             <div class="input-group">
                                 <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
-                                <div class="input-group-text">
-                                    <input type="checkbox" id="showPasswordConfirm">&nbsp;Pokaż Hasło
-                                </div>
+                                <button type="button" class="btn btn-link" id="togglePasswordConfirm">Pokaż Hasło</button>
                             </div>
                         </div>
                         <div class="mb-3 row align-items-center">
@@ -81,11 +79,9 @@
                                 <input type="number" name="shoe_size" class="form-control" id="shoe_size" value="{{ old('shoe_size') }}" min="20" max="70">
                             </div>
                         </div>
-                        <div class="mb-1">
-                            <div class="d-grid">
-                                <button class="btn btn-primary">Zarejestruj</button>
-                            </div>
-                        </div>
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-primary btn-lg">Zarejestruj</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -117,27 +113,34 @@
 
             $('#password-strength-bar').removeClass().addClass('progress-bar ' + progressBarClass);
 
-            var feedbackText = 'Strength Score: ' + result.score + '<br>Feedback: ' + result.feedback.suggestions.join(', ');
+           // var feedbackText = 'Strength Score: ' + result.score + '<br>Feedback: ' + result.feedback.suggestions.join(', ');
             $('#password-strength-text').html(feedbackText);
         });
 
-        $('#showPassword').change(function () {
-            var passwordInput = $('#password');
-            if ($(this).prop('checked')) {
-                passwordInput.attr('type', 'text');
-            } else {
-                passwordInput.attr('type', 'password');
-            }
-        });
-
-        $('#showPasswordConfirm').change(function () {
-            var passwordConfirmInput = $('#password_confirmation');
-            if ($(this).prop('checked')) {
-                passwordConfirmInput.attr('type', 'text');
-            } else {
-                passwordConfirmInput.attr('type', 'password');
-            }
-        });
+    $('#togglePassword').click(function () {
+        togglePasswordVisibility('password');
     });
+
+    $('#togglePasswordConfirm').click(function () {
+        togglePasswordVisibility('password_confirmation');
+    });
+
+    function togglePasswordVisibility(inputId) {
+        var passwordInput = $('#' + inputId);
+        var passwordButton = $('#toggle' + inputId.capitalize());
+
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            passwordButton.text('Ukryj Hasło');
+        } else {
+            passwordInput.attr('type', 'password');
+            passwordButton.text('Pokaż Hasło');
+        }
+    }
+
+    String.prototype.capitalize = function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+});
 </script>
 @endsection
