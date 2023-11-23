@@ -42,7 +42,7 @@ class AuthController extends Controller
             return redirect('/home')->with('success', 'Pomyślnie Zalogowano');
         }
  
-        return back()->with('error', 'Błąd Email or Password');
+        return back()->with('error', 'Błąd: Nieprawidłowy email lub hasło');
     }
  
     public function logout()

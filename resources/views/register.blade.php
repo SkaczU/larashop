@@ -5,7 +5,7 @@
         <div class="col-lg-4">
             <div class="card text-center">
                 <div class="card-header">
-                    <h1 class="col-sm-3 col-form-label">Rejestracja</h1>
+                    <h1 class="card-title">Rejestracja</h1>
                 </div>
                 <div class="card-body">
                     @if(Session::has('success'))
@@ -16,19 +16,19 @@
                     <form action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="mb-3 row align-items-center">
-                            <label for="name" class="col-md-4 col-form-label text-md-start">Nazwa użytkownika</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-start"><b>Nazwa użytkownika</b></label>
                             <input type="text" name="name" class="form-control" id="name" placeholder="Imię Nazwisko" required>
                         </div>
                         <div class="mb-3 row align-items-center">
-                            <label for="email" class="col-md-4 col-form-label text-md-start">Adres email</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-start"><b>Adres email</b></label>
                             <input type="email" name="email" class="form-control" id="email" placeholder="przykladowy@mail.com" required>
                         </div>
                         <div class="mb-3 row align-items-center">
-                            <label for="password" class="col-md-4 col-form-label text-md-start">Podaj Hasło</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-start"><b>Podaj Hasło</b></label>
                             <div class="input-group">
                                 <input type="password" name="password" class="form-control" id="password" required>
                                 <div class="input-group-text">
-                                    <input type="checkbox" id="showPassword">Pokaż Hasło
+                                    <input type="checkbox" id="showPassword">&nbsp;Pokaż Hasło
                                 </div>
                             </div>
                         </div>
@@ -36,22 +36,22 @@
                               <div id="password-strength-bar" class="progress-bar password-strength-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="mb-3 row align-items-center">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-start">Jeszcze raz</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-start"><b>Jeszcze raz</b></label>
                             <div class="input-group">
                                 <input type="password" name="password-confirm" class="form-control" id="password-confirm" required>
                                 <div class="input-group-text">
-                                    <input type="checkbox" id="showPasswordConfirm">Pokaż Hasło
+                                    <input type="checkbox" id="showPasswordConfirm">&nbsp;Pokaż Hasło
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3 row align-items-center">
-                            <label for="shoe_size" class="col-md-4 col-form-label text-md-end">Numer buta</label>
+                            <label for="shoe_size" class="col-md-4 col-form-label text-md-end"><b>Numer buta</b></label>
                             
                             <div class="col-md-4">
                                 <input type="number" name="shoe_size" class="form-control" id="shoe_size" min="20" max="70">
                             </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-1">
                             <div class="d-grid">
                                 <button class="btn btn-primary">Zarejestruj</button>
                             </div>
