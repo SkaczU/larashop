@@ -20,8 +20,11 @@
                             <input type="email" name="email" class="form-control" id="email" placeholder="przykladowy@mail.com" required>
                         </div>
                         <div class="mb-3 row align-items-center">
-                            <label for="password" class="col-md-4 col-form-label text-md-start"><b>Hasło</b></label>
-                            <input type="password" name="password" class="form-control" id="password" required>
+                            <label for="password" class="col-md-4 col-form-label text-md-start"><b>Podaj Hasło</b></label>
+                            <div class="input-group">
+                                <input type="password" name="password" class="form-control" id="password" required>
+                                <button type="button" class="btn btn-link" id="togglePassword">Pokaż Hasło</button>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <div class="d-grid">
@@ -33,4 +36,30 @@
             </div>
         </div>
     </div>
+<script>
+        $('#togglePassword').click(function () {
+        togglePasswordVisibility('password');
+    });
+
+    $('#togglePasswordConfirm').click(function () {
+        togglePasswordVisibility('password_confirmation');
+    });
+
+    function togglePasswordVisibility(inputId) {
+        var passwordInput = $('#' + inputId);
+        var passwordButton = $('#toggle' + inputId.capitalize());
+
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            passwordButton.text('Ukryj Hasło');
+        } else {
+            passwordInput.attr('type', 'password');
+            passwordButton.text('Pokaż Hasło');
+        }
+    }
+
+    String.prototype.capitalize = function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+</script>
 @endsection
