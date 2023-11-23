@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
  
 class AuthController extends Controller
 {
@@ -15,6 +16,19 @@ class AuthController extends Controller
  
     public function registerPost(Request $request)
     {
+         // Walidacja danych wejściowych
+         $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:80',
+            'email' => 'required|email|unique:users|max:255',
+            'password' => ['required', 'string', 'min:10', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
+            'voivodeship' => 'required|string|max:50',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return redirect()->back()->withErrors($errors)->withInput();
+        }
+
         $user = new User();
  
         $user->name = $request->name;
@@ -24,7 +38,7 @@ class AuthController extends Controller
         $user->voivodeship = $request->voivodeship;
         $user->save();
  
-        return back()->with('success', 'Rejestracja przebiegła Pomyślne');
+        return redirect('/home')->with('success', 'Rejestracja przebiegła pomyślnie');
     }
  
     public function login()
@@ -34,6 +48,7 @@ class AuthController extends Controller
  
     public function loginPost(Request $request)
     {
+
         $credetials = [
             'email' => $request->email,
             'password' => $request->password,

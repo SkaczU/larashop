@@ -13,15 +13,24 @@
                             {{ Session::get('success') }}
                         </div>
                     @endif
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <form action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="mb-3 row align-items-center">
                             <label for="name" class="col-md-4 col-form-label text-md-start"><b>Nazwa użytkownika</b></label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Imię Nazwisko" required>
+                            <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" placeholder="Imię Nazwisko" required>
                         </div>
                         <div class="mb-3 row align-items-center">
                             <label for="email" class="col-md-4 col-form-label text-md-start"><b>Adres email</b></label>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="przykladowy@mail.com" required>
+                            <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}" placeholder="przykladowy@mail.com" required>
                         </div>
                         <div class="mb-3 row align-items-center">
                             <label for="voivodeship" class="col-md-4 col-form-label text-md-start"><b>Województwo</b></label>
@@ -57,9 +66,9 @@
                               <div id="password-strength-bar" class="progress-bar password-strength-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="mb-3 row align-items-center">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-start"><b>Jeszcze raz</b></label>
+                            <label for="password_confirmation" class="col-md-4 col-form-label text-md-start"><strong>Jeszcze raz</strong></label>
                             <div class="input-group">
-                                <input type="password" name="password-confirm" class="form-control" id="password-confirm" required>
+                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
                                 <div class="input-group-text">
                                     <input type="checkbox" id="showPasswordConfirm">&nbsp;Pokaż Hasło
                                 </div>
@@ -69,7 +78,7 @@
                             <label for="shoe_size" class="col-md-4 col-form-label text-md-end"><b>Numer buta</b></label>
                             
                             <div class="col-md-4">
-                                <input type="number" name="shoe_size" class="form-control" id="shoe_size" min="20" max="70">
+                                <input type="number" name="shoe_size" class="form-control" id="shoe_size" value="{{ old('shoe_size') }}" min="20" max="70">
                             </div>
                         </div>
                         <div class="mb-1">
@@ -93,9 +102,10 @@
                 $('#password-strength-bar').css('width', '0%').attr('aria-valuenow', 0);
                 return;
             }
+            
             var result = zxcvbn(password);
 
-            var progressValue = (result.score + 1) * 25; // Convert score (0-4) to progress value (0-100)
+            var progressValue = (result.score + 1) * 25; // Convert score (0-4) kowertuje wartosc z raportu zcb na wartosc z paska (0-100)
             $('#password-strength-bar').css('width', progressValue + '%').attr('aria-valuenow', progressValue);
 
             var progressBarClass = 'bg-danger';
@@ -121,7 +131,7 @@
         });
 
         $('#showPasswordConfirm').change(function () {
-            var passwordConfirmInput = $('#password-confirm');
+            var passwordConfirmInput = $('#password_confirmation');
             if ($(this).prop('checked')) {
                 passwordConfirmInput.attr('type', 'text');
             } else {
