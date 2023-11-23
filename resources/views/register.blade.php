@@ -25,7 +25,24 @@
                         </div>
                         <div class="mb-3 row align-items-center">
                             <label for="voivodeship" class="col-md-4 col-form-label text-md-start"><b>Województwo</b></label>
-                            <input type="select" name="voivodeship" class="form-control" id="voivodeship"  required>
+                            <select name="voivodeship" class="form-control" id="voivodeship" required>
+                                <option value="dolnoslaskie">Dolnośląskie</option>
+                                <option value="kujawsko-pomorskie">Kujawsko-Pomorskie</option>
+                                <option value="lubelskie">Lubelskie</option>
+                                <option value="lubuskie">Lubuskie</option>
+                                <option value="lodzkie">Łódzkie</option>
+                                <option value="malopolskie">Małopolskie</option>
+                                <option value="mazowieckie">Mazowieckie</option>
+                                <option value="opolskie">Opolskie</option>
+                                <option value="podkarpackie">Podkarpackie</option>
+                                <option value="podlaskie">Podlaskie</option>
+                                <option value="pomorskie">Pomorskie</option>
+                                <option value="slaskie">Śląskie</option>
+                                <option value="swietokrzyskie">Świętokrzyskie</option>
+                                <option value="warminsko-mazurskie">Warmińsko-Mazurskie</option>
+                                <option value="wielkopolskie" selected>Wielkopolskie</option>
+                                <option value="zachodniopomorskie">Zachodniopomorskie</option>
+                            </select>
                         </div>
                         <div class="mb-3 row align-items-center">
                             <label for="password" class="col-md-4 col-form-label text-md-start"><b>Podaj Hasło</b></label>
