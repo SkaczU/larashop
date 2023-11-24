@@ -14,6 +14,6 @@ class OrderController extends Controller
     
         $orders = $user->orders()->paginate(10);
     
-        return view('/profile/order_list', ['orders' => $orders]);
+        return view('/profile/orders', ['orders' => $orders]);
     }
 }

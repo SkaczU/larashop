@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/profile/{id}', [AuthController::class, 'updatePost'])->name('profile');
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/profile/order_list', [OrderController::class, 'index']);
+    Route::get('/profile/orders', [OrderController::class, 'index']);
 
     Route::get('/home', [ServiceController::class, 'index'])->name('services');
 });
