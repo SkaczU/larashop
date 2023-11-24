@@ -54,7 +54,8 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     
                                     <a class="dropdown-item" href="/profile">Profil</a>
-                                    <a class="dropdown-item" href="profile/orders">Zamówienia</a>
+                                    <a class="dropdown-item" href="/profile/orders">Zamówienia</a>
+                                    <a class="dropdown-item" href="/profile/myservices">Moje Usługi</a>
                                     <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

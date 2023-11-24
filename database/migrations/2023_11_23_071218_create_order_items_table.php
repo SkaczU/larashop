@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id')->unsigned();
-            $table->integer('service_id')->unsigned();
+            $table->integer('order_id')->unsigned()->index();;
+            $table->integer('service_id')->unsigned()->index();;
             $table->integer('quantity');
+            $table->integer('value');
             $table->datetime('start_date');
             $table->datetime('end_date');
         });

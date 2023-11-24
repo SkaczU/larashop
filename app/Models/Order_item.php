@@ -9,14 +9,17 @@ class Order_item extends Model
 {
     use HasFactory;
 
-    public function orders()
+    protected $fillable = ['order_id', 'service_id', 'quantity'];
+
+
+    public function order()
     {
-        return $this->hasMany(Order::class);
+        return $this->belongsTo(Order::class, 'order_id');
     }
 
-    public function services()
+    public function service()
     {
-        return $this->hasMany(Service::class);
+        return $this->belongsTo(Service::class, 'service_id');
     }
 
 }
