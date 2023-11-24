@@ -11,7 +11,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $service = Service::all();
+        $service = Service::paginate(10);
         return view('home')->with('service', $service);
     }
 

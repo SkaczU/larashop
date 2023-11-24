@@ -21,6 +21,6 @@ class ServicesTableSeeder extends Seeder
             'available' => true,
         ]);
 
-        Service::factory()->count(2)->create();
+        Service::factory()->count(11)->create();
     }
 }
