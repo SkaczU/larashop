@@ -54,12 +54,12 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     
                                     <a class="dropdown-item" href="/profile">Profil</a>
-                                    <a class="dropdown-item" href="/profile">Zamówienia</a>
+                                    <a class="dropdown-item" href="profile/order_list">Zamówienia</a>
                                     <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Wyloguj') }}
+                                        <b>{{ ('Wyloguj') }}</b>
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @method('DELETE')

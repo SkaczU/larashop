@@ -5,7 +5,6 @@
         <div class="d-flex align-items-center justify-content-between">
             <h1 class="mb-0">Lista Usług</h1>
         </div>
-        <hr />
         <table class="table table-hover">
             <thead class="table-primary">
                 <tr>
