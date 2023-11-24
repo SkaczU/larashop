@@ -33,13 +33,17 @@ Route::group(['middleware' => 'guest'], function () {
 
 });
 
+
+
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', [HomeController::class, 'index']);
+
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::put('/profile/{id}', [AuthController::class, 'updatePost'])->name('profile');
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/profile/orders', [OrderController::class, 'index']);
+    Route::get('/profile/services{id}', [OrderController::class, 'showServices']);
+    Route::get('/profile/myservices{id}', [OrderController::class, 'showMyServices']);
 
     Route::get('/home', [ServiceController::class, 'index'])->name('services');
 });

@@ -25,7 +25,7 @@
                             <td class="align-middle">{{ $rs->status }}</td>
                             <td class="align-middle">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="" type="button" class="btn btn-secondary">Podglad</a>
+                                    <a href="./services{{$rs->id}}" type="button" class="btn btn-secondary">Podglad</a>
                                 </div>
                             </td>
                         </tr>
