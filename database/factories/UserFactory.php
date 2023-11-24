@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'voivodeship' => fake()->randomElement(['dolnoslaskie', 'kujawsko-pomorskie', 'lubelskie', 'lubuskie', 'lodzkie', 'malopolskie', 'mazowieckie', 'opolskie', 'podkarpackie', 'podlaskie', 'pomorskie', 'slaskie', 'swietokrzyskie', 'warminsko-mazurskie', 'wielkopolskie', 'zachodniopomorskie']),
-            'shoe_size' => $faker->numberBetween(20, 60),
+            'shoe_size' => fake()->numberBetween(20, 60),
             'remember_token' => Str::random(60),
         ];
     }

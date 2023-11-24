@@ -68,4 +68,23 @@ class AuthController extends Controller
  
         return redirect('/');
     }
+
+    public function profile()
+    {
+        return view('profile');
+    }
+
+    public function updatePost(Request $request, string $id)
+    {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string|max:80',
+        'voivodeship' => 'required|string|max:50',
+    ]);
+
+    $profile = User::findOrFail($id);
+  
+        $profile->update($request->all());
+
+    return redirect('/home')->with('success', 'Pomyślne edytowano profil');
+    }
 }
