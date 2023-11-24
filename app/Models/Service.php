@@ -18,4 +18,9 @@ class Service extends Model
         'available',
         
     ];
+
+    public function order_item()
+    {
+        return $this->belongsTo(Order_item::class);
+    }
 }

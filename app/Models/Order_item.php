@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Order_item extends Model
 {
     use HasFactory;
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
 }
