@@ -38,6 +38,8 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/profile', [AuthController::class, 'profile']);
+    Route::put('/profile/{id}', [AuthController::class, 'updatePost'])->name('profile');
+    Route::get('/profile/orders', [AuthController::class, 'profile']);
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/home', [ServiceController::class, 'index'])->name('services');

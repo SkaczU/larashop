@@ -24,36 +24,41 @@
                     @endif
                     <form action="{{ route('register') }}" method="POST">
                         @csrf
-                        <div class="mb-3 row align-items-center">
-                            <label for="name" class="col-md-4 col-form-label text-md-start"><b>Nazwa użytkownika</b></label>
+                        <div class="mb-3 row">
+                            <label for="name" class="col-md-4 col-form-label text-md-end font-weight-bold"><b>Nazwa użytkownika</b></label>
+                            <div class="col-md-8">
                             <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" placeholder="Imię Nazwisko" required>
+                            </div>
                         </div>
-                        <div class="mb-3 row align-items-center">
-                            <label for="email" class="col-md-4 col-form-label text-md-start"><b>Adres email</b></label>
+                        <div class="mb-3 row">
+                            <label for="email" class="col-md-4 col-form-label text-md-end font-weight-bold"><b>Adres email</b></label>
+                            <div class="col-md-8">
                             <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}" placeholder="przykladowy@mail.com" required>
+                            </div>
                         </div>
-                        <div class="mb-3 row align-items-center">
-                            <label for="voivodeship" class="col-md-4 col-form-label text-md-start"><b>Województwo</b></label>
-                            <select name="voivodeship" class="form-control" id="voivodeship" required>
-                                <option value="dolnoslaskie">Dolnośląskie</option>
-                                <option value="kujawsko-pomorskie">Kujawsko-Pomorskie</option>
-                                <option value="lubelskie">Lubelskie</option>
-                                <option value="lubuskie">Lubuskie</option>
-                                <option value="lodzkie">Łódzkie</option>
-                                <option value="malopolskie">Małopolskie</option>
-                                <option value="mazowieckie">Mazowieckie</option>
-                                <option value="opolskie">Opolskie</option>
-                                <option value="podkarpackie">Podkarpackie</option>
-                                <option value="podlaskie">Podlaskie</option>
-                                <option value="pomorskie">Pomorskie</option>
-                                <option value="slaskie">Śląskie</option>
-                                <option value="swietokrzyskie">Świętokrzyskie</option>
-                                <option value="warminsko-mazurskie">Warmińsko-Mazurskie</option>
-                                <option value="wielkopolskie" selected>Wielkopolskie</option>
-                                <option value="zachodniopomorskie">Zachodniopomorskie</option>
-                            </select>
+                        <div class="mb-3 row">
+                            <label for="voivodeship" class="col-md-4 col-form-label text-md-end font-weight-bold"><b>Województwo</b></label>
+                            <div class="col-md-8">
+                                <select name="voivodeship" class="form-control" id="voivodeship" required>
+                                    @foreach([
+                                        'dolnoslaskie', 'kujawsko-pomorskie', 'lubelskie', 'lubuskie', 'lodzkie',
+                                        'malopolskie', 'mazowieckie', 'opolskie', 'podkarpackie', 'podlaskie',
+                                        'pomorskie', 'slaskie', 'swietokrzyskie', 'warminsko-mazurskie',
+                                        'wielkopolskie', 'zachodniopomorskie'
+                                    ] as $option)
+                                        <option value="{{ $option }}" {{ old('voivodeship') == $option ? 'selected' : '' }}>{{ $option }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                        <div class="mb-3 row align-items-center">
+                        <div class="mb-3 row">
+                            <label for="shoe_size" class="col-md-4 col-form-label text-md-end"><b>Numer buta</b></label>
+                            
+                            <div class="col-md-4">
+                                <input type="number" name="shoe_size" class="form-control" id="shoe_size" value="{{ old('shoe_size') }}" min="20" max="70">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label for="password" class="col-md-4 col-form-label text-md-start"><b>Podaj Hasło</b></label>
                             <div class="input-group">
                                 <input type="password" name="password" class="form-control" id="password" required>
@@ -65,18 +70,11 @@
                         <div class="progress mt-2">
                             <div id="password-strength-bar" class="progress-bar password-strength-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="mb-3 row align-items-center">
+                        <div class="mb-3 row">
                             <label for="password_confirmation" class="col-md-4 col-form-label text-md-start"><strong>Jeszcze raz</strong></label>
                             <div class="input-group">
                                 <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
                                 <button type="button" class="btn btn-link" id="togglePasswordConfirm">Pokaż Hasło</button>
-                            </div>
-                        </div>
-                        <div class="mb-3 row align-items-center">
-                            <label for="shoe_size" class="col-md-4 col-form-label text-md-end"><b>Numer buta</b></label>
-                            
-                            <div class="col-md-4">
-                                <input type="number" name="shoe_size" class="form-control" id="shoe_size" value="{{ old('shoe_size') }}" min="20" max="70">
                             </div>
                         </div>
                         <div class="d-grid mt-4">

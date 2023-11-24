@@ -9,10 +9,11 @@
                         <h1 class="card-title">Edycja Profilu</h1>
                     </div>
                     <div class="card-body">
-                        <form method="POST" enctype="multipart/form-data" id="profile_setup_frm" action="">
+                        <form method="POST" enctype="multipart/form-data" id="profile_setup_frm" action="{{ route('profile', ['id' => auth()->user()->id]) }}">
+                            @method('PUT')
                             @csrf
                             <div class="mb-3 row">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end">Nazwa</label>
                                 <div class="col-md-8">
                                     <input type="text" name="name" class="form-control" placeholder="First name" value="{{ auth()->user()->name }}">
                                 </div>
@@ -24,15 +25,25 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
+                                <label for="voivodeship" class="col-md-4 col-form-label text-md-end font-weight-bold">Województwo</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{ auth()->user()->phone }}">
+                                    <select name="voivodeship" class="form-control" id="voivodeship" required>
+                                        @foreach([
+                                            'dolnoslaskie', 'kujawsko-pomorskie', 'lubelskie', 'lubuskie', 'lodzkie',
+                                            'malopolskie', 'mazowieckie', 'opolskie', 'podkarpackie', 'podlaskie',
+                                            'pomorskie', 'slaskie', 'swietokrzyskie', 'warminsko-mazurskie',
+                                            'wielkopolskie', 'zachodniopomorskie'
+                                        ] as $voivodeship)
+                                            <option value="{{ $voivodeship }}" {{ auth()->user()->voivodeship == $voivodeship ? 'selected' : '' }}>{{ $voivodeship }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="address" class="col-md-4 col-form-label text-md-end">Address</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="address" class="form-control" value="{{ auth()->user()->address }}" placeholder="Address">
+                                <label for="shoe_size" class="col-md-4 col-form-label text-md-end">Numer buta</label>
+                                
+                                <div class="col-md-4">
+                                    <input type="number" name="shoe_size" class="form-control" id="shoe_size" value="{{ auth()->user()->shoe_size }}" min="20" max="70">
                                 </div>
                             </div>
                             <div class="mt-4 text-center">

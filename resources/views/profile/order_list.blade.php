@@ -24,17 +24,11 @@
                             <td class="align-middle">{{ $rs->name }}</td>
                             <td class="align-middle">{{ $rs->description }}</td> 
                             <td class="align-middle">{{ $rs->price }}</td>
-                            @if($rs->available == 1)
                             <td class="align-middle">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="" type="button" class="btn btn-secondary">Dodaj do koszyka</a>
+                                    <a href="" type="button" class="btn btn-secondary">Podglad</a>
                                 </div>
                             </td>
-                            @else
-                            <td>
-                            Usługa Narazie niedostępna
-                            </td>
-                            @endif
                         </tr>
                     @endforeach    
                 @else
