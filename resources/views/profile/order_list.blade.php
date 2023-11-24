@@ -3,43 +3,41 @@
 @section('content')
     <div class="container">
         <div class="d-flex align-items-center justify-content-between">
-            <h1 class="mb-0">Lista Usług</h1>
+            <h1 class="mb-0">Moje zamówienia</h1>
         </div>
         <hr />
         <table class="table table-hover">
             <thead class="table-primary">
                 <tr>
                     <th>#</th>
-                    <th>Nazwa usługi</th>
-                    <th>Opis</th>
-                    <th>Cena</th>
-                    <th>Zamów</th>
+                    <th>Zamówienie</th>
+                    <th>Z dnia</th>
+                    <th>Status</th>
+                    <th>Podgląd</th>
                 </tr>
             </thead>
             <tbody>
-                @if($service->count() > 0)
-                    @foreach($service as $rs)
+                @forelse($orders as $rs)
                         <tr>
                             <td class="align-middle">{{ $loop->iteration }}</td>
-                            <td class="align-middle">{{ $rs->name }}</td>
-                            <td class="align-middle">{{ $rs->description }}</td> 
-                            <td class="align-middle">{{ $rs->price }}</td>
+                            <td class="align-middle">Zamówienie nr {{ $rs->id }}</td>
+                            <td class="align-middle">{{ $rs->created_at }}</td> 
+                            <td class="align-middle">{{ $rs->status }}</td>
                             <td class="align-middle">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="" type="button" class="btn btn-secondary">Podglad</a>
                                 </div>
                             </td>
                         </tr>
-                    @endforeach    
-                @else
+                @empty
                     <tr>
-                        <td class="text-center" colspan="5">Brak dostępnych usług</td>
+                        <td class="text-center" colspan="5">Brak Zamówień</td>
                     </tr>
-                @endif
+                @endforelse
             </tbody>
         </table>
         <div class="mb-0 row align-items-center">
-            {{ $service->links('pagination::bootstrap-4') }}
+            {{ $orders->links('pagination::bootstrap-4') }}
         </div>
     </div>
 @endsection
