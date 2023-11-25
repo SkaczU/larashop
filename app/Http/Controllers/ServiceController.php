@@ -1,17 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\QueryFilters\ServiceFilters;
 class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(ServiceFilters $filters)
     {
-        $service = Service::paginate(10);
+
+        $service =  Service::filterBy($filters)->paginate(10);
+
+
         return view('home')->with('service', $service);
     }
 
