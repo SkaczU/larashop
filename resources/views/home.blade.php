@@ -2,9 +2,17 @@
 
 @section('content')
     <div class="container">
+        
         <div class="d-flex align-items-center justify-content-between">
-            <h1 class="mb-0">Lista Usług</h1>
+            <form class="form-inline" method="GET" action="{{ route('services') }}">
+                <div class="d-flex align-items-center"> 
+                    <input class="form-control mr-2" placeholder="Szukaj" name="title" type="text">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
         </div>
+        <br>
+        
         <table class="table table-hover">
             <thead class="table-primary">
                 <tr>

@@ -20,7 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/about', [HomeController::class, 'about']);
 
 Route::group(['middleware' => 'guest'], function () {   
