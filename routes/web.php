@@ -20,9 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/about', [HomeController::class, 'about']);
 
-Route::group(['middleware' => 'guest'], function () {
+Route::group(['middleware' => 'guest'], function () {   
+
+    
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -43,7 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/profile/orders', [OrderController::class, 'index']);
     Route::get('/profile/services{id}', [OrderController::class, 'showServices']);
-    Route::get('/profile/myservices{id}', [OrderController::class, 'showMyServices']);
+    Route::get('/profile/myservices', [OrderController::class, 'showMyServices']);
+    Route::get('/services/{id}', [OrderController::class, 'myServices']);
 
     Route::get('/home', [ServiceController::class, 'index'])->name('services');
 });
