@@ -39,6 +39,8 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 
+    
+   
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::put('/profile/{id}', [AuthController::class, 'updatePost'])->name('profile');
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
