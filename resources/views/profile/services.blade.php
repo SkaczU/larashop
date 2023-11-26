@@ -31,7 +31,7 @@
                 </tbody>
             </table>
             <div class="d-flex align-items-center justify-content-between">
-                <h1 class="mb-0">Całkowity koszt zamowienia: {{$order->value}}</h1>
+                <h1 class="mb-0">Całkowity koszt zamowienia: {{$order->value}} zł</h1>
             </div>
         @else
             <p>Brak zamówionych usług.</p>

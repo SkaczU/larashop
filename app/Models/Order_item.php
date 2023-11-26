@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order_item extends Model
 {
+    public $timestamps = false;
     use HasFactory;
 
-    protected $fillable = ['order_id', 'service_id', 'quantity'];
+    protected $fillable = [
+        'service_id',
+        'quantity',
+        'start_date',
+        'end_date'
+    ];
 
 
     public function order()

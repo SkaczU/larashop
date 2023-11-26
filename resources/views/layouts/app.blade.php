@@ -35,10 +35,10 @@
                         @guest
                         @else
                         <div class="nav-item">
-                            <a href="" class="icontext d-flex align-items-center">
+                            <a href="{{ route('cart') }}" class="icontext d-flex align-items-center">
                                 <div class="icon-wrap icon-xs bg2 round text-secondary me-2"><i class="fa fa-shopping-cart"></i></div>
                                 <div class="text-wrap me-3">
-                                    Koszyk
+                                    Koszyk <small>( {{count(Cart::getContent())}} )</small>
                                 </div>
                             </a>
                         </div>

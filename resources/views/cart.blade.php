@@ -8,7 +8,6 @@
                     <h3>Koszyk</h3>
                 </div>
             </div>
-
             <div class="row">
                 <main class="col-sm-9">
                     @if ($cart->count() > 0)
@@ -33,7 +32,7 @@
                                                 </figure>
                                             </td>
                                             <td>
-                                                {{ $item->quantity }}
+                                                <input type="number" name="quantitye" class="form-control" id="quantity" value="{{ $item->quantity }}" min="0" max="12" readonly>
                                             </td>
                                             <td>
                                                 <div class="price-wrap">
@@ -41,7 +40,7 @@
                                                 </div>
                                             </td>
                                             <td class="text-right">
-                                                <form action="{{ route('cart.delete', ['product' => $item->id]) }}" method="post">
+                                                <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button class="btn btn-outline-danger">Usuń</button>
@@ -58,16 +57,12 @@
                 </main>
                 <aside class="col-sm-3">
                     <dl class="dlist-align h4">
-                        <dt>Ilość:</dt>
-                        <dd class="text-right">{{ $total_quantity }}</dd>
-                    </dl>
-                    <dl class="dlist-align h4">
                         <dt>Suma:</dt>
                         <dd class="text-right"><strong>{{ $total }} zł</strong></dd>
                     </dl>
                     @if ($cart->count() > 0)
                         <hr>
-                        <form action="{{ route('products.store') }}" method="post">
+                        <form action="" method="post">
                             @csrf
                             <button type="submit" class="btn btn-primary btn-block">Złóż zamówienie</button>
                         </form>

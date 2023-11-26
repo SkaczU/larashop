@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->unsigned()->index();;
             $table->enum('status', ['Przyjęte', 'Realizowane', 'Zakonczone'])->default('Przyjęte');
+            $table->integer('value')->nullable();;
             $table->timestamps();
         });
     }
