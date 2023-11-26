@@ -6,9 +6,6 @@ use App\Models\Service;
 use App\QueryFilters\ServiceFilters;
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(ServiceFilters $filters)
     {
 
@@ -17,28 +14,13 @@ class ServiceController extends Controller
 
         return view('home')->with('service', $service);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    //NIE ZAIMPLEMENTOWANO
     public function create()
     {
         return view('services.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        Service::create($request->all());
- 
-        return redirect('/home')->with('success', 'Service added successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     */
+    //NIE ZAIMPLEMENTOWANO
     public function show(string $id)
     {
         $service = Service::findOrFail($id);
@@ -46,9 +28,7 @@ class ServiceController extends Controller
         return view('services.show', compact('service'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   //NIE ZAIMPLEMENTOWANO
     public function edit(string $id)
     {
         $service = Service::findOrFail($id);
@@ -56,9 +36,7 @@ class ServiceController extends Controller
         return view('services.edit', compact('service'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    //NIE ZAIMPLEMENTOWANO
     public function update(Request $request, string $id)
     {
      
@@ -69,9 +47,7 @@ class ServiceController extends Controller
         return redirect()->route('services')->with('success', 'service updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    //NIE ZAIMPLEMENTOWANO
     public function destroy(string $id)
     {
         $service = Service::findOrFail($id);
