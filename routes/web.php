@@ -51,4 +51,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/services/{id}', [OrderController::class, 'myServices']);
 
     Route::get('/home', [ServiceController::class, 'index'])->name('services');
+    Route::get('/home/{id}', [ServiceController::class, 'addToCart'])->name('addToCart');
 });

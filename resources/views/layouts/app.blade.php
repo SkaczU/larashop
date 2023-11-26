@@ -20,7 +20,8 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ config('app.name', 'Larashop') }}
+                    <img class="logo" src="https://img.joemonster.org/i/d/patmat.jpg" width="60" height="60"> 
+                    {{ config('app.name', ' Larashop') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -28,9 +29,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto">
-
+                        
                     </ul>
                     <ul class="navbar-nav ms-auto">
+                        @guest
+                        @else
+                        <div class="nav-item">
+                            <a href="" class="icontext d-flex align-items-center">
+                                <div class="icon-wrap icon-xs bg2 round text-secondary me-2"><i class="fa fa-shopping-cart"></i></div>
+                                <div class="text-wrap me-3">
+                                    Koszyk
+                                </div>
+                            </a>
+                        </div>
+                        @endguest
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">

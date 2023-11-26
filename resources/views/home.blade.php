@@ -79,7 +79,7 @@
                     <th>#</th>
                     <th>Nazwa usługi</th>
                     <th>Opis</th>
-                    <th>Cena (zł)</th>
+                    <th>Cena</th>
                     <th>Zamów</th>
                 </tr>
             </thead>
@@ -90,11 +90,11 @@
                             <td class="align-middle">{{ $loop->iteration }}</td>
                             <td class="align-middle">{{ $rs->name }}</td>
                             <td class="align-middle">{{ $rs->description }}</td> 
-                            <td class="align-middle">{{ $rs->price }} zł</td>
+                            <td class="align-middle">{{ $rs->price }}</td>
                             @if($rs->available == 1)
                             <td class="align-middle">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="" type="button" class="btn btn-secondary">Dodaj do koszyka</a>
+                                    <a href="{{ route('addToCart', ['id' => $rs->id] ) }}" type="button" class="btn btn-secondary">Dodaj do koszyka</a>
                                 </div>
                             </td>
                             @else
