@@ -22,6 +22,41 @@ class OrderController extends Controller
         return view('profile.orders', ['orders' => $orders]);
     }
 
+    public function store(Request $request)
+    {
+       $cart = \Cart::getContent();
+       $total_price = \Cart::getTotal();
+
+       $order = new Order();
+
+       $order->user_id = auth()->user()->id;
+       $order->value = $total_price;
+       $order->save();
+
+       foreach ($cart as $item){
+        $startDate = Carbon::now();
+        $endDate = $startDate->copy()->addMonths($item->quantity);
+
+       $order->order_items()->create([
+            'service_id' => $item->id,
+            'quantity' =>$item->quantity,
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+       ]);
+       }
+
+       \Cart::clear();
+
+       return redirect('/profile/orders')->with([
+        'status' => [
+            'type' => 'success',
+            'content' => 'Złożono zamówienie',
+        ]
+        ]);
+
+    }
+
+
     public function myServices($serviceId)
 {
     $user = Auth::user();

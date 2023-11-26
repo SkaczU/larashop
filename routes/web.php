@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +50,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/services{id}', [OrderController::class, 'showServices']);
     Route::get('/profile/myservices', [OrderController::class, 'showMyServices']);
     Route::get('/services/{id}', [OrderController::class, 'myServices']);
+    Route::post('/cart', [OrderController::class, 'store'])->name('store');
+
+
+
 
     Route::get('/home', [ServiceController::class, 'index'])->name('services');
+    Route::get('/home/{id}', [ServiceController::class, 'addToCart'])->name('addToCart');
+    
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::delete('/cart{id}', [CartController::class, 'delete'])->name('delete');
+
 });

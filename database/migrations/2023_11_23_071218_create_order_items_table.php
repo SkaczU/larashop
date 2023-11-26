@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('order_id')->unsigned()->index();;
             $table->integer('service_id')->unsigned()->index();;
-            $table->integer('quantity');
-            $table->integer('value');
+            $table->integer('quantity')->nullable();
             $table->datetime('start_date');
             $table->datetime('end_date');
         });
