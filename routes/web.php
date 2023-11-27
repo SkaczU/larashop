@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ApiController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,16 +49,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/profile/orders', [OrderController::class, 'index']);
-    Route::get('/profile/services{id}', [OrderController::class, 'showServices']);
+    Route::get('/profile/services/{id}', [OrderController::class, 'showServices']);
     Route::get('/profile/myservices', [OrderController::class, 'showMyServices']);
     Route::get('/services/{id}', [OrderController::class, 'myServices']);
+    Route::post('/services/noservice', [OrderController::class, 'noService'])->name('noService');
     Route::post('/cart', [OrderController::class, 'store'])->name('store');
-
-
-
+ 
 
     Route::get('/home', [ServiceController::class, 'index'])->name('services');
     Route::get('/home/{id}', [ServiceController::class, 'addToCart'])->name('addToCart');
+
+    Route::get('/endpoint', [ApiController::class, 'response']);
     
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::delete('/cart{id}', [CartController::class, 'delete'])->name('delete');

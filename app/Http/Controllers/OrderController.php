@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Service;
 use App\Models\Order;
 use App\Models\Order_item;
+use Illuminate\Support\Facades\Http;
 
 
 class OrderController extends Controller
@@ -24,35 +25,36 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-       $cart = \Cart::getContent();
-       $total_price = \Cart::getTotal();
+    dd($request);
 
-       $order = new Order();
+    $cart = \Cart::getContent();
+    $total_price = \Cart::getTotal();
 
-       $order->user_id = auth()->user()->id;
-       $order->value = $total_price;
-       $order->save();
+    $order = new Order();
 
-       foreach ($cart as $item){
-        $startDate = Carbon::now();
-        $endDate = $startDate->copy()->addMonths($item->quantity);
+    $order->user_id = auth()->user()->id;
+    $order->value = $total_price;
+    $order->save();
 
-       $order->order_items()->create([
-            'service_id' => $item->id,
-            'quantity' =>$item->quantity,
-            'start_date' => $startDate,
-            'end_date' => $endDate,
-       ]);
-       }
+    foreach ($cart as $item){
+    $startDate = Carbon::now();
+    $endDate = $startDate->copy()->addMonths($item->quantity);
 
-       \Cart::clear();
+    $order->order_items()->create([
+        'service_id' => $item->id,
+        'quantity' =>$item->quantity,
+        'start_date' => $startDate,
+        'end_date' => $endDate,
+    ]);
+    }
 
-       return redirect('/profile/orders')->with([
-        'status' => [
-            'type' => 'success',
-            'content' => 'Złożono zamówienie',
-        ]
-        ]);
+    \Cart::clear();
+
+    return redirect('/profile/orders')->with([
+    'status' => [
+        'type' => 'success',
+        'content' => 'Złożono zamówienie',
+    ]]);
 
     }
 
@@ -63,7 +65,7 @@ class OrderController extends Controller
 
     $viewPath = resource_path("views/services/$serviceId.blade.php");
     if (!File::exists($viewPath)) {
-        return redirect('/home')->with('error', 'Brak dostępu do tego zamówienia.');
+        return redirect('servicesnoservice')->with('error', 'Brak dostępu do tego zamówienia.');
     }
 
     $service = Service::findOrFail($serviceId);
@@ -86,9 +88,19 @@ class OrderController extends Controller
         ->latest('end_date')
         ->get();
 
-    return view("services.$serviceId", [
+        $response = Http::get('https://dev.edwin.pcss.pl/api/meteo/v3/observationStation?type=WEATHER&active=true&page=0&size=20');
+
+        if ($response->successful()) {
+            $content = $response->json();
+        } else {
+            $content = $response->status();
+            //return response()->json(['message' => 'Error: ' . $statusCode], $statusCode);
+        }
+
+        return view("services.$serviceId", [
         'service' => $service,
         'orderItems' => $orderItems,
+        'data' => $content,
     ]);
 }
 
@@ -134,5 +146,12 @@ class OrderController extends Controller
         return view('profile.myservices', [
             'services' => $services,
         ]);
+    }
+
+    public function noService()
+    {
+        $user = Auth::user();
+    
+        return view('services.noservice');
     }
 }
