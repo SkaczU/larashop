@@ -11,17 +11,18 @@
     </div>
     
     <div class="row collapse show" id="collapseFilters">
-        <div class="col-md-4 d-flex flex-fill">
-            <div class="card mb-3 d-flex flex-fill">
+        <div class="col-md-4 d-flex align-items-center justify-content-center">
+            <div class="card mb-3">
                 <div class="card-body">
                     <form class="form-inline mb-3" method="GET" action="{{ route('services') }}">
-                        <div class="d-flex align-items-center"> 
-                            <input class="form-control mr-2" placeholder="Szukaj" name="title" type="text" value="{{ Request::input('title')}}">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                        <div class="d-flex align-items-center">
+                            <input class="form-control mr-3" placeholder="Szukaj" name="title" type="text" value="{{ Request::input('title')}}">
+                            <button class="btn btn-primary ml-2" type="submit"><i class="fa fa-search"></i></button>
                         </div>
                 </div>
             </div>
         </div>
+        
 
         <div class="col-md-4 d-flex flex-fill">
             <div class="card mb-3 d-flex flex-fill">
