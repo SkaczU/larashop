@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        
+    
         <div class="col-md-4 d-flex flex-fill">
             <div class="card mb-3 d-flex flex-fill">
                 <div class="card-body">
@@ -99,8 +99,8 @@
                             <td class="align-middle">{{ $rs->name }}</td>
                             <td class="align-middle" style="width: 50%">{{ $rs->description }}</td> 
                             <td class="align-middle">{{ $rs->price }} zł</td>
-                            <td class="align-middle"><input type="number" name="quantity" class="form-control" id="quantity" min="1" max="12" value="1"></td>
                             @if($rs->available == 1)
+                            <td class="align-middle"><input type="number" name="quantity" class="form-control" id="quantity" min="1" max="12" value="1"></td>
                             <td class="align-middle">
                                     @csrf
                                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -111,8 +111,9 @@
                                 </form>
                             </td>
                             @else
-                            <td>
-                            Usługa Narazie niedostępna
+                            <td class="align-middle"></td>
+                            <td class="align-middle">
+                            Usługa narazie niedostępna
                             </td>
                             @endif
                         </tr>

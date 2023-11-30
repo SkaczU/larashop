@@ -47,10 +47,6 @@
         togglePasswordVisibility('password');
     });
 
-    $('#togglePasswordConfirm').click(function () {
-        togglePasswordVisibility('password_confirmation');
-    });
-
     function togglePasswordVisibility(inputId) {
         var passwordInput = $('#' + inputId);
         var passwordButton = $('#toggle' + inputId.capitalize());
