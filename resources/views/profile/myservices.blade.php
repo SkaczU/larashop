@@ -8,6 +8,11 @@
                 <div class="card-header">
                     <h1 class="mb-0">Dostępne Usługi</h1>
                 </div>
+                @if(Session::has('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
                 <hr />
                 <div class="card-body">
                     @if($services->isEmpty())
