@@ -21,6 +21,7 @@ class ServiceController extends Controller
 
        \Cart::add($service->id, $service->name, $service->price, $quantity);
 
-       return back();
+       return back()->with('success', 'Dodano ' . $service->name . ' do koszyka');
+
     }
 }

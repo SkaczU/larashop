@@ -8,6 +8,11 @@
                     <h1 class="card-title">Rejestracja</h1>
                 </div>
                 <div class="card-body">
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {!! nl2br(e(Session::get('error'))) !!} 
+                        </div>
+                    @endif
                     @if(Session::has('success'))
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('success') }}
@@ -71,10 +76,10 @@
                             <div id="password-strength-bar" class="progress-bar password-strength-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="password2" class="col-md-4 col-form-label text-md-start"><strong>Jeszcze raz</strong></label>
+                            <label for="password_confirmation" class="col-md-4 col-form-label text-md-start"><strong>Jeszcze raz</strong></label>
                             <div class="input-group">
-                                <input type="password" name="password2" class="form-control" id="password2" required>
-                                <button type="button" class="btn btn-link" id="togglePassword2">Pokaż Hasło</button>
+                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
+                                <button type="button" class="btn btn-link" id="togglePassword_confirmation">Pokaż Hasło</button>
                             </div>
                         </div>
                         <div class="d-grid mt-4">
@@ -115,12 +120,12 @@
             $('#password-strength-text').html(feedbackText);
         });
 
-    $('#togglePassword').click(function () {
+        $('#togglePassword').click(function () {
         togglePasswordVisibility('password');
     });
 
-    $('#togglePassword2').click(function () {
-        togglePasswordVisibility('password2');
+    $('#togglePassword_confirmation').click(function () {
+        togglePasswordVisibility('password_confirmation');
     });
 
     function togglePasswordVisibility(inputId) {

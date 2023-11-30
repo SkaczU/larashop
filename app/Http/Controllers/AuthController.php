@@ -5,7 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+    use Illuminate\Support\Facades\Validator;
  
 class AuthController extends Controller
 {
@@ -26,7 +26,10 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            return redirect()->back()->withErrors($errors)->withInput();
+            $error = "Hasło powinno zawierać:\n Minimum 10 znaków, małą i dużą litere, znak specjalny";
+
+            //->withErrors($errors)
+            return redirect()->back()->with('error', $error)->withInput();
         }
 
         $user = new User();
@@ -38,7 +41,7 @@ class AuthController extends Controller
         $user->voivodeship = $request->voivodeship;
         $user->save();
  
-        return redirect('/home')->with('success', 'Rejestracja przebiegła pomyślnie');
+        return redirect('login')->with('success', 'Rejestracja przebiegła pomyślnie');
     }
  
     public function login()
@@ -55,7 +58,7 @@ class AuthController extends Controller
         ];
  
         if (Auth::attempt($credetials)) {
-            return redirect('/home')->with('success', 'Pomyślnie Zalogowano');
+            return redirect('/home');
         }
  
         return back()->with('error', 'Błąd: Nieprawidłowy email lub hasło');
@@ -80,6 +83,12 @@ class AuthController extends Controller
         'name' => 'required|string|max:80',
         'voivodeship' => 'required|string|max:50',
     ]);
+
+    if ($validator->fails()) {
+        $errors = $validator->errors();
+
+        return redirect()->back()->withErrors($errors)->withInput();
+    }
 
     $profile = User::findOrFail($id);
   

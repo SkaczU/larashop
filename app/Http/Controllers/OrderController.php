@@ -52,11 +52,7 @@ class OrderController extends Controller
 
     \Cart::clear();
 
-    return redirect('/profile/orders')->with([
-    'status' => [
-        'type' => 'success',
-        'content' => 'Złożono zamówienie',
-    ]]);
+    return redirect('/profile/orders')->with('success', 'Złożono zamówienie');
 
     }
 
@@ -145,6 +141,7 @@ class OrderController extends Controller
         ->latest('end_date')
         ->get();
         
+
         return view('profile.myservices', [
             'services' => $services,
         ]);
