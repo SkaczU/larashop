@@ -11,7 +11,8 @@ use App\Models\Service;
 use App\Models\Order;
 use App\Models\Order_item;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderStored;
 
 class OrderController extends Controller
 {
@@ -49,8 +50,10 @@ class OrderController extends Controller
         'end_date' => $endDate,
     ]);
     }
-
+ 
     \Cart::clear();
+
+    Mail::to($request->user())->send(new OrderStored($order));
 
     return redirect('/profile/orders')->with('success', 'Złożono zamówienie');
 
