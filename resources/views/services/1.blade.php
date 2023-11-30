@@ -10,7 +10,11 @@
             <p>Brak dostępu do usługi</p>
         @else
             <div class="row justify-content-center">
-                {{-- <h2 class="mb-0">Ważna do {{$maxEndDate}}</h2> --}}
+                @php
+                $endDates = $orderItems->pluck('end_date')->toArray();
+                $maxEndDate = max($endDates);
+                @endphp
+                <h2 class="mb-0">Ważna do {{$maxEndDate}}</h2>
                 <div class="embed-responsive embed-responsive-16by9 box" style="width: 80%;">
                     <div id="leaflet-map" class="embed-responsive-item" style="height: 500px; width: 100%;"></div>
                 </div>
@@ -26,10 +30,9 @@
                             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         }).addTo(map);
 
-                        // Iteruj po stacjach meteorologicznych i dodaj markery na mapie
                         @foreach ($data['content'] as $station)
                             var marker = L.marker([{{ $station['latitude'] }}, {{ $station['longitude'] }}]).addTo(map);
-                            marker.bindPopup('<b>{{ $station['name'] }}</b><br>{{ $station['tercCode'] }}');
+                            marker.bindPopup('<b>{{ $station['name'] }}</b><br>Nr Stacji: {{ $station['tercCode'] }} <br>Status: {{ $station['stationStatus'] }} ');
                         @endforeach
                     }
                 </script>

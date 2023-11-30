@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-12">
-                    <h3>Koszyk</h3>
+                    <h3>Koszyk</h3>    
                 </div>
             </div>
             <div class="row">
@@ -32,7 +32,7 @@
                                                 </figure>
                                             </td>
                                             <td>
-                                                <input type="number" name="quantitye" class="form-control" id="quantity" value="{{ $item->quantity }}" min="0" max="12" readonly>
+                                                <input type="number" name="quantity" class="form-control" id="quantity" value="{{ $item->quantity }}" min="0" max="12" readonly>
                                             </td>
                                             <td>
                                                 <div class="price-wrap">
@@ -62,8 +62,14 @@
                     </dl>
                     @if ($cart->count() > 0)
                         <hr>
-                        <form action="" method="post">
+                        <form action="{{ route('store') }}" method="post">
                             @csrf
+                            Dara rozpoczęcia usług:  
+                            <div class="col-sm-6 mb-6">
+                            <form action="{{ route('store') }}" method="post">
+                            <input type="date" class="form-control mb-3" id="startDate" name="startDate" min="{{ now()->format('Y-m-d') }}" value="{{ now()->format('Y-m-d') }}" required>
+                            </form>
+                            <div>
                             <button type="submit" class="btn btn-primary btn-block">Złóż zamówienie</button>
                         </form>
                     @endif

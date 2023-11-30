@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
  
 
     Route::get('/home', [ServiceController::class, 'index'])->name('services');
-    Route::get('/home/{id}', [ServiceController::class, 'addToCart'])->name('addToCart');
+    Route::post('/home/{id}', [ServiceController::class, 'addToCart'])->name('addToCart');
 
     Route::get('/endpoint', [ApiController::class, 'response']);
     

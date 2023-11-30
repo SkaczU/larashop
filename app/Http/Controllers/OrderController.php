@@ -23,9 +23,8 @@ class OrderController extends Controller
         return view('profile.orders', ['orders' => $orders]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, )
     {
-    dd($request);
 
     $cart = \Cart::getContent();
     $total_price = \Cart::getTotal();
@@ -36,8 +35,11 @@ class OrderController extends Controller
     $order->value = $total_price;
     $order->save();
 
+    $carbonObject = Carbon::createFromFormat('Y-m-d', $request->input('startDate'));
+    $startDate = $carbonObject->startOfDay();
+   
     foreach ($cart as $item){
-    $startDate = Carbon::now();
+    
     $endDate = $startDate->copy()->addMonths($item->quantity);
 
     $order->order_items()->create([
@@ -65,7 +67,7 @@ class OrderController extends Controller
 
     $viewPath = resource_path("views/services/$serviceId.blade.php");
     if (!File::exists($viewPath)) {
-        return redirect('servicesnoservice')->with('error', 'Brak dostępu do tego zamówienia.');
+        return redirect('services.noservice')->with('error', 'Brak dostępu do tego zamówienia.');
     }
 
     $service = Service::findOrFail($serviceId);
@@ -88,7 +90,7 @@ class OrderController extends Controller
         ->latest('end_date')
         ->get();
 
-        $response = Http::get('https://dev.edwin.pcss.pl/api/meteo/v3/observationStation?type=WEATHER&active=true&page=0&size=20');
+        $response = Http::get('https://dev.edwin.pcss.pl/api/meteo/v3/observationStation?type=WEATHER&active=true&page=0&size=50');
 
         if ($response->successful()) {
             $content = $response->json();

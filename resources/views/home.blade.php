@@ -11,17 +11,18 @@
     </div>
     
     <div class="row collapse show" id="collapseFilters">
-        <div class="col-md-4 d-flex flex-fill">
-            <div class="card mb-3 d-flex flex-fill">
+        <div class="col-md-4 d-flex align-items-center justify-content-center">
+            <div class="card mb-3">
                 <div class="card-body">
                     <form class="form-inline mb-3" method="GET" action="{{ route('services') }}">
-                        <div class="d-flex align-items-center"> 
-                            <input class="form-control mr-2" placeholder="Szukaj" name="title" type="text" value="{{ Request::input('title')}}">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                        <div class="d-flex align-items-center">
+                            <input class="form-control mr-3" placeholder="Szukaj" name="title" type="text" value="{{ Request::input('title')}}">
+                            <button class="btn btn-primary ml-2" type="submit"><i class="fa fa-search"></i></button>
                         </div>
                 </div>
             </div>
         </div>
+        
 
         <div class="col-md-4 d-flex flex-fill">
             <div class="card mb-3 d-flex flex-fill">
@@ -79,7 +80,8 @@
                     <th>#</th>
                     <th>Nazwa usługi</th>
                     <th>Opis</th>
-                    <th>Cena</th>
+                    <th>Cena (zł)</th>
+                    <th>Ilość</th>
                     <th>Zamów</th>
                 </tr>
             </thead>
@@ -87,15 +89,21 @@
                 @if($service->count() > 0)
                     @foreach($service as $rs)
                         <tr>
+                            <form method="POST" action="{{ route('addToCart', ['id' => $rs->id]) }}">
                             <td class="align-middle">{{ $loop->iteration }}</td>
                             <td class="align-middle">{{ $rs->name }}</td>
-                            <td class="align-middle">{{ $rs->description }}</td> 
-                            <td class="align-middle">{{ $rs->price }}</td>
+                            <td class="align-middle" style="width: 50%">{{ $rs->description }}</td> 
+                            <td class="align-middle">{{ $rs->price }} zł</td>
+                            <td class="align-middle"><input type="number" name="quantity" class="form-control" id="quantity" min="1" max="12" value="1"></td>
                             @if($rs->available == 1)
                             <td class="align-middle">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{{ route('addToCart', ['id' => $rs->id] ) }}" type="button" class="btn btn-secondary">Dodaj do koszyka</a>
-                                </div>
+                                    @csrf
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="submit" class="btn btn-secondary">
+                                            <i class="fa fa-shopping-cart"></i> Do Koszyka
+                                        </button>
+                                    </div>
+                                </form>
                             </td>
                             @else
                             <td>
