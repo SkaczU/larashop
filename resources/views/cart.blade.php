@@ -32,7 +32,7 @@
                                                 </figure>
                                             </td>
                                             <td>
-                                                <input type="number" name="quantitye" class="form-control" id="quantity" value="{{ $item->quantity }}" min="0" max="12" readonly>
+                                                <input type="number" name="quantity" class="form-control" id="quantity" value="{{ $item->quantity }}" min="0" max="12" readonly>
                                             </td>
                                             <td>
                                                 <div class="price-wrap">

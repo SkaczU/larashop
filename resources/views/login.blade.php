@@ -32,6 +32,7 @@
                             </div>
                         </div>
                     </form>
+                    <P> Nie masz konta? <a class='' href="{{ route('login') }}">{{ __('Zarejestruj się') }}</a>! </p>
                 </div>
             </div>
         </div>

@@ -14,11 +14,12 @@ class ServiceController extends Controller
         return view('home')->with('service', $service);
     }
 
-    public function addToCart($serviceId)
+    public function addToCart(Request $request, $serviceId)
     {
         $service = Service::findOrFail($serviceId);
+        $quantity = $request->input('quantity');
 
-       \Cart::add($service->id, $service->name, $service->price, 1);
+       \Cart::add($service->id, $service->name, $service->price, $quantity);
 
        return back();
     }

@@ -80,7 +80,8 @@
                     <th>#</th>
                     <th>Nazwa usługi</th>
                     <th>Opis</th>
-                    <th>Cena</th>
+                    <th>Cena (zł)</th>
+                    <th>Ilość</th>
                     <th>Zamów</th>
                 </tr>
             </thead>
@@ -88,15 +89,21 @@
                 @if($service->count() > 0)
                     @foreach($service as $rs)
                         <tr>
+                            <form method="POST" action="{{ route('addToCart', ['id' => $rs->id]) }}">
                             <td class="align-middle">{{ $loop->iteration }}</td>
                             <td class="align-middle">{{ $rs->name }}</td>
-                            <td class="align-middle">{{ $rs->description }}</td> 
-                            <td class="align-middle">{{ $rs->price }}</td>
+                            <td class="align-middle" style="width: 50%">{{ $rs->description }}</td> 
+                            <td class="align-middle">{{ $rs->price }} zł</td>
+                            <td class="align-middle"><input type="number" name="quantity" class="form-control" id="quantity" min="1" max="12" value="1"></td>
                             @if($rs->available == 1)
                             <td class="align-middle">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{{ route('addToCart', ['id' => $rs->id] ) }}" type="button" class="btn btn-secondary">Dodaj do koszyka</a>
-                                </div>
+                                    @csrf
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="submit" class="btn btn-secondary">
+                                            <i class="fa fa-shopping-cart"></i> Do Koszyka
+                                        </button>
+                                    </div>
+                                </form>
                             </td>
                             @else
                             <td>

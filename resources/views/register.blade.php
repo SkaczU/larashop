@@ -71,10 +71,10 @@
                             <div id="password-strength-bar" class="progress-bar password-strength-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="password_confirmation" class="col-md-4 col-form-label text-md-start"><strong>Jeszcze raz</strong></label>
+                            <label for="password2" class="col-md-4 col-form-label text-md-start"><strong>Jeszcze raz</strong></label>
                             <div class="input-group">
-                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
-                                <button type="button" class="btn btn-link" id="togglePasswordConfirm">Pokaż Hasło</button>
+                                <input type="password" name="password2" class="form-control" id="password2" required>
+                                <button type="button" class="btn btn-link" id="togglePassword2">Pokaż Hasło</button>
                             </div>
                         </div>
                         <div class="d-grid mt-4">
@@ -119,8 +119,8 @@
         togglePasswordVisibility('password');
     });
 
-    $('#togglePasswordConfirm').click(function () {
-        togglePasswordVisibility('password_confirmation');
+    $('#togglePassword2').click(function () {
+        togglePasswordVisibility('password2');
     });
 
     function togglePasswordVisibility(inputId) {
