@@ -37,6 +37,11 @@
                             </div>
                         </div>
                     </form>
+                    <div class="form-group mb-3">
+                        <label for="remember">Zapamiętaj mnie</label>
+                        <input type="checkbox" name="remember" value="1">
+                  </div>
+                    {{-- TU bedzie przypominanie hasla? --}}
                     <P> Nie masz konta? <a class='' href="{{ route('register') }}">{{ __('Zarejestruj się') }}</a>! </p>
                 </div>
             </div>
@@ -45,10 +50,6 @@
 <script>
         $('#togglePassword').click(function () {
         togglePasswordVisibility('password');
-    });
-
-    $('#togglePasswordConfirm').click(function () {
-        togglePasswordVisibility('password_confirmation');
     });
 
     function togglePasswordVisibility(inputId) {
