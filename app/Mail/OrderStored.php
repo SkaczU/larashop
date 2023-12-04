@@ -29,7 +29,7 @@ class OrderStored extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Lara Shop -',
+            subject: 'Lara Shop - Zamówienie: '. $this->order->id. '',
         );
     }
 

@@ -29,9 +29,9 @@
                                 <div class="col-md-8">
                                     <select name="voivodeship" class="form-control" id="voivodeship" required>
                                         @foreach([
-                                            'dolnoslaskie', 'kujawsko-pomorskie', 'lubelskie', 'lubuskie', 'lodzkie',
-                                            'malopolskie', 'mazowieckie', 'opolskie', 'podkarpackie', 'podlaskie',
-                                            'pomorskie', 'slaskie', 'swietokrzyskie', 'warminsko-mazurskie',
+                                            'dolnośląskie', 'kujawsko-pomorskie', 'lubelskie', 'lubuskie', 'łódzkie',
+                                            'małopolskie', 'mazowieckie', 'opolskie', 'podkarpackie', 'podlaskie',
+                                            'pomorskie', 'śląskie', 'świętokrzyskie', 'warmińsko-mazurskie',
                                             'wielkopolskie', 'zachodniopomorskie'
                                         ] as $voivodeship)
                                             <option value="{{ $voivodeship }}" {{ auth()->user()->voivodeship == $voivodeship ? 'selected' : '' }}>{{ $voivodeship }}</option>
