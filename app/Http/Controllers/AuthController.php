@@ -5,7 +5,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-    use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
+
  
 class AuthController extends Controller
 {
@@ -19,13 +20,14 @@ class AuthController extends Controller
          // Walidacja danych wejściowych
          $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:80',
-            'email' => 'required|email|unique:users|max:255',
+            'email' => 'required|email:rfc,dns|unique:users|max:255',
             'password' => ['required', 'string', 'min:10', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
             'voivodeship' => 'required|string|max:50',
         ]);
 
         if ($validator->fails()) {
             $errors = $validator->errors();
+
             $error = "Hasło powinno zawierać:\n Minimum 10 znaków, małą i dużą litere, znak specjalny";
 
             //->withErrors($errors)

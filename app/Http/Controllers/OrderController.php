@@ -66,7 +66,7 @@ class OrderController extends Controller
 
     $viewPath = resource_path("views/services/$serviceId.blade.php");
     if (!File::exists($viewPath)) {
-        return redirect('services.noservice')->with('error', 'Brak dostępu do tego zamówienia.');
+        return view('services.noservice');
     }
 
     $service = Service::findOrFail($serviceId);
@@ -152,8 +152,6 @@ class OrderController extends Controller
 
     public function noService()
     {
-        $user = Auth::user();
-    
         return view('services.noservice');
     }
 }

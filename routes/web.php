@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/services/{id}', [OrderController::class, 'showServices']);
     Route::get('/profile/myservices', [OrderController::class, 'showMyServices']);
     Route::get('/services/{id}', [OrderController::class, 'myServices']);
-    Route::post('/services/noservice', [OrderController::class, 'noService'])->name('noService');
+    Route::get('/services/noservice', [OrderController::class, 'noService'])->name('noService');
     Route::post('/cart', [OrderController::class, 'store'])->name('store');
  
 
